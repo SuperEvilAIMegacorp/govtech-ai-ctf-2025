@@ -1,0 +1,23 @@
+# AI CTF Challenge Requirements
+# Core dependencies for running verifier.py and related scripts
+# Based on working environment versions
+
+# PyTorch ecosystem
+torch==2.8.0
+torchvision==0.23.0
+
+# Image processing
+Pillow==10.4.0
+
+# Scientific computing
+numpy==2.2.6
+
+# Image analysis and metrics
+scikit-image==0.25.2
+
+# Web framework
+Flask==3.0.3
+
+# Configuration
+PyYAML==6.0.1
+

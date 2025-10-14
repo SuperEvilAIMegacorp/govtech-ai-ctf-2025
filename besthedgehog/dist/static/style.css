@@ -1,0 +1,462 @@
+/* Best Hedgehog Challenge Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-section, .training-section, .hedgehogs-section, .hint-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2, .training-section h2, .hedgehogs-section h2, .hint-section h3 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.scores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2980b9, #1f4e79);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: white;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #229954, #1e8449);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #7f8c8d, #566573);
+    transform: translateY(-2px);
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.result-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.result-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.result-flag {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: #7d4f00;
+    border: 2px solid #d4ac0d;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+    color: white;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+.target-hedgehog {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7) !important;
+    font-weight: bold;
+}
+
+.target-hedgehog:hover {
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e) !important;
+}
+
+.hint-section {
+    margin-top: 30px;
+}
+
+.hint-section details {
+    margin-top: 15px;
+}
+
+.hint-section summary {
+    cursor: pointer;
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.hint-section summary:hover {
+    background: #d5dbdb;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin-top: 15px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Loading animation */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Challenge specific styles */
+.challenge-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Advanced form styles removed */
+
+.demo-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, #e8f5e8, #d4edda);
+    border-radius: 10px;
+    border: 2px solid #28a745;
+}
+
+.jaga-summary {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border: 2px solid #f39c12;
+}
+
+.jaga-summary h4 {
+    margin-bottom: 10px;
+    color: #d35400;
+}
+
+.evaluation-score {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.evaluation-score.success {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+.evaluation-score.normal {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+}
+
+.training-section {
+    text-align: center;
+}
+
+.training-section .btn {
+    margin: 5px;
+    min-width: 200px;
+}
+
+code {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    display: block;
+    margin: 10px 0;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+#resultsSection {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Role badges */
+.role-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.role-badge.training-data {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+.role-badge.test-data {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+}
+
+/* Evaluation score variations */
+.evaluation-score.target {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Stored score display */
+.stored-score {
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+/* Data change warning */
+.data-warning {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bold;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 5px rgba(243, 156, 18, 0.5); }
+    to { box-shadow: 0 0 20px rgba(243, 156, 18, 0.8); }
+}
+
+/* Training summary section */
+.training-summary {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border-left: 4px solid #3498db;
+}
+
+.training-summary h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.training-summary ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.training-summary li {
+    background: #f8f9fa;
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border-left: 3px solid #3498db;
+}
+
+.training-summary p {
+    margin: 10px 0;
+    color: #555;
+}
+
+/* Additional responsive improvements */
+@media (max-width: 768px) {
+    .training-section .btn {
+        min-width: 150px;
+        font-size: 14px;
+    }
+    
+    code {
+        font-size: 0.8em;
+        padding: 6px 8px;
+    }
+    
+    .role-badge {
+        font-size: 0.7em;
+        padding: 3px 6px;
+    }
+    
+    .training-summary {
+        padding: 15px;
+    }
+}

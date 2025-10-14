@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Hedgehog Leaderboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦔 Best Hedgehog Leaderboard</h1>
+            <p>Add new hedgehogs and train the AI evaluation model!</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Add Hedgehog Form -->
+            <div class="form-section">
+                <h2>➕ Add New Hedgehog</h2>
+                <p>Add a new hedgehog to the database and retrain the AI model.</p>
+                <form id="hedgehogForm">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="scores-grid">
+                        <div class="form-group">
+                            <label for="furriness">Furriness:</label>
+                            <input type="number" id="furriness" name="furriness" min="0" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cuteness">Cuteness:</label>
+                            <input type="number" id="cuteness" name="cuteness" min="0" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="friendliness">Friendliness:</label>
+                            <input type="number" id="friendliness" name="friendliness" min="0" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="curiosity">Curiosity:</label>
+                            <input type="number" id="curiosity" name="curiosity" min="0" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="agility">Agility:</label>
+                            <input type="number" id="agility" name="agility" min="0" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sleepiness">Sleepiness:</label>
+                            <input type="number" id="sleepiness" name="sleepiness" min="0" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="evaluation_score">Evaluation Score (optional):</label>
+                            <input type="number" id="evaluation_score" name="evaluation_score" min="0" max="100" step="0.01" placeholder="Auto-calculated if not specified">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Add Hedgehog & Train Model</button>
+                </form>
+            </div>
+
+            <!-- Model Training -->
+            <div class="challenge-section">
+                <h2>🤖 AI Model Training</h2>
+                <p>Train an AI model to evaluate hedgehog performance. The model excludes <strong>jaga</strong> from training data and uses them as test data.</p>
+                <p>See how well the AI can predict jaga's evaluation score!</p>
+                
+                <div class="demo-section">
+                    <button id="demoBtn" class="btn btn-secondary">Demo Model Training</button>
+                </div>
+                
+                <div id="resultDiv" class="result-box" style="display: none;"></div>
+            </div>
+        </div>
+
+    <!-- Hedgehogs Table -->
+    <div class="hedgehogs-section">
+            <h2>Current Hedgehogs</h2>
+            <div class="table-container">
+                <table id="hedgehogsTable">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Furriness</th>
+                            <th>Cuteness</th>
+                            <th>Friendliness</th>
+                            <th>Curiosity</th>
+                            <th>Agility</th>
+                            <th>Sleepiness</th>
+                            <th>AI Evaluation</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for hedgehog in hedgehogs %}
+                        <tr {% if hedgehog.username == 'jaga' %}class="target-hedgehog"{% endif %}>
+                            <td>{{ hedgehog.username }}</td>
+                            <td>{{ hedgehog.furriness }}</td>
+                            <td>{{ hedgehog.cuteness }}</td>
+                            <td>{{ hedgehog.friendliness }}</td>
+                            <td>{{ hedgehog.curiosity }}</td>
+                            <td>{{ hedgehog.agility }}</td>
+                            <td>{{ hedgehog.sleepiness }}</td>
+                            <td>
+                                {% if hedgehog.evaluation_score is not none %}
+                                <span class="evaluation-score {{ 'success' if hedgehog.username == 'jaga' and hedgehog.evaluation_score >= 100 else ('target' if hedgehog.username == 'jaga' else 'normal') }}">
+                                    {{ "%.2f"|format(hedgehog.evaluation_score) }}
+                                </span>
+                                {% else %}
+                                <span class="evaluation-score normal">N/A</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="role-badge {{ 'test-data' if hedgehog.username == 'jaga' else 'training-data' }}">
+                                    {{ 'Test Data' if hedgehog.username == 'jaga' else 'Training Data' }}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+    <div id="resultsSection" class="hedgehogs-section" style="display: none;">
+            <h2>🔍 AI Results</h2>
+            <div id="resultsContent"></div>
+        </div>
+
+
+
+        <!-- Footer -->
+        <footer>
+            <button onclick="location.reload()" class="btn btn-secondary">Refresh Challenge</button>
+            <p>Best Hedgehog Evaluation System</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
